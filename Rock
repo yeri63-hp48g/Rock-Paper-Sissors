@@ -4,9 +4,11 @@
   0 RDZ
   
   @ Define custom menu with the move buttons and quit option.
-  {{ "Rock" }{ "Paper" }{ "Sisrs" }{ }{ }{ "Quit" } TMENU
+  {{ "Rock" }{ "Paper" }{ "Sisrs" }{ }{ }
+   { "Quit" << CLEAR 2.01 MENU KILL }} TMENU
   
   CLLCD
+  1 FREEZE
   "        Rock" 3 DISP .5 WAIT
   "        Paper" 4 DISP .5 WAIT
   "        Sissors" 5 DISP 1.5 WAIT
