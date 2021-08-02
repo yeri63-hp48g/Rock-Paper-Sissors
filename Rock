@@ -27,118 +27,116 @@
   0 0 0 0 0 0 0 -> k h c m s s1 s2
   <<
     WHILE 1 REPEAT
-      @ Wait here indefinitely for a keypress.
-      -1 WAIT 'k' STO
+      @ Wait here indefinitely for a valid keypress.
+      DO
+        -1 WAIT 'k' STO
       
-      CASE 
-        k 11.1 == THEN @ Rock was selected.
-          1 
-        END
-          
-        k 12.1 == THEN @ Paper was selected.
-          2 
-        END
-          
-        k 13.1 == THEN @ Sissors was selected.
-          3 
-        END
-          
-        k 16.1 == THEN @ Quit was selected.
-          CLEAR
-          2.01 TMENU
-          KILL
-        END
-          
-        0 @ No valid key was pressed.
-      END
-      'h' STO
-      
-      @ Only process the results if a valid button was pressed.
-      IF h 0 > THEN
-        CLLCD
-        
-        @ Display human's move.
-        " "
-        { Rock Paper Sissors } 
-        h GET +
-        
-        @ Get computer's move and display.
-        RAND 3 * FLOOR 1 +
-        'c' STO
-        " vs. " +
-        { Rock Paper Sissors }
-        c GET + 
-        2 DISP
-        
-        @ Add a very brief pause before displaying result.
-        .1 WAIT
-        
-        @ Calculate game results, ie. the message and who won.
-        IF h c == THEN              @ A tie.
-          1 'm' STO
-          1 's' STO
-        END
-          
-        IF h 1 == c 2 == AND THEN   @ Paper wraps rock, computer won.
-          2 'm' STO
-          2 's' STO
-        END
-        
-        IF h 1 == c 3 == AND THEN   @ Rock breaks sissors, human won.
-          3 'm' STO
-          3 's' STO
-        END
-        
-        IF h 2 == c 1 == AND THEN   @ Paper wraps rock, human won.
-          2 'm' STO
-          3 's' STO
-        END
-        
-        IF h 2 == c 3 == AND THEN   @ Sissors cuts paper, computer won.
-          4 'm' STO
-          2 's' STO
-        END
-        
-        IF h 3 == c 1 == AND THEN   @ Rock breaks sissors, computer won.
-          3 'm' STO
-          2 's' STO
-        END
-        
-        IF h 3 == c 2 == AND THEN   @ Sissors cuts paper, human won.
-          4 'm' STO
-          3 's' STO
-        END
-        
-        @ Display the game results.
-        { "A tie, nobody wins."
-          "Paper wraps rock,"
-          "Rock breaks sissors,"
-          "Sissors cuts paper," }
-        m GET + 
-        3 DISP
-        
-        " "
-        { "" "I win." "you win." }
-        s GET + 
-        4 DISP
-        
-        @ Update game scores.
         CASE 
-          s 2 == THEN @ You lost the game.
-            's2' INCR
+          k 11.1 == THEN @ Rock was selected.
+            1 
           END
           
-          s 3 == THEN @ You won the game.
-            's1' INCR
+          k 12.1 == THEN @ Paper was selected.
+            2 
           END
+          
+          k 13.1 == THEN @ Sissors was selected.
+            3 
+          END
+          
+          k 16.1 == THEN @ Quit was selected.
+            CLEAR
+            2.01 TMENU
+            KILL
+          END
+          
+          0 @ No valid key was pressed.
         END
+        'h' STO  
         
-        @ Disply the current score.
-        " Score: " s1 +
-        " to " + s2 +
-        6 DISP
+      UNTIL h 0 > END
+      
+      @ Display human's move.
+      CLLCD
+      " "
+      { Rock Paper Sissors } 
+      h GET +
         
+      @ Get computer's move and display.
+      RAND 3 * FLOOR 1 +
+      'c' STO
+      " vs. " +
+      { Rock Paper Sissors }
+      c GET + 
+      2 DISP
+        
+      @ Add a very brief pause before displaying result.
+      .1 WAIT
+        
+      @ Calculate game results, ie. the message and who won.
+      IF h c == THEN              @ A tie.
+        1 'm' STO
+        1 's' STO
       END
+          
+      IF h 1 == c 2 == AND THEN   @ Paper wraps rock, computer won.
+        2 'm' STO
+        2 's' STO
+      END
+        
+      IF h 1 == c 3 == AND THEN   @ Rock breaks sissors, human won.
+        3 'm' STO
+        3 's' STO
+      END
+        
+      IF h 2 == c 1 == AND THEN   @ Paper wraps rock, human won.
+        2 'm' STO
+        3 's' STO
+      END
+        
+      IF h 2 == c 3 == AND THEN   @ Sissors cuts paper, computer won.
+        4 'm' STO
+        2 's' STO
+      END
+        
+      IF h 3 == c 1 == AND THEN   @ Rock breaks sissors, computer won.
+        3 'm' STO
+        2 's' STO
+      END
+        
+      IF h 3 == c 2 == AND THEN   @ Sissors cuts paper, human won.
+        4 'm' STO
+        3 's' STO
+      END
+        
+      @ Display the game results.
+      { "A tie, nobody wins."
+        "Paper wraps rock,"
+        "Rock breaks sissors,"
+        "Sissors cuts paper," }
+      m GET + 
+      3 DISP
+        
+      " "
+      { "" "I win." "you win." }
+      s GET + 
+      4 DISP
+        
+      @ Update game scores.
+      CASE 
+        s 2 == THEN @ You lost the game.
+          's2' INCR
+        END
+          
+        s 3 == THEN @ You won the game.
+          's1' INCR
+        END
+      END
+        
+      @ Disply the current score.
+      " Score: " s1 +
+      " to " + s2 +
+      6 DISP
     END
   >>
 >>
