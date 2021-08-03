@@ -23,4 +23,4 @@ So the next time you have some time on your hands, but no one to play this game 
 Notes:
 
 1. The hand gesters used to represent the items in the game are a closed fist (rock), flat hand (paper), and peace sign pointed horizontally (sissors).
-2. An easy way to see who would win is by recalling the game title, "Rock, Paper, Sissors", and the word order. The winner will always be the player who picked the word to the right of the word selected by the other player. Using this schema, Rock would be considered to be to the right of Sissors.
+2. An easy way to see who would win is by recalling the game title, "Rock, Paper, Sissors", and the word order. The winner will always be the player who picked the word to the right of the word selected by the other player. Using this schema, Rock would be considered to be to the right of word Sissors.
